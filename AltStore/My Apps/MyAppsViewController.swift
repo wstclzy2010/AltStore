@@ -292,11 +292,11 @@ private extension MyAppsViewController
             
             if numberOfDays == 1
             {
-                cell.bannerView.button.setTitle(NSLocalizedString("1 DAY", comment: ""), for: .normal)
+                cell.bannerView.button.setTitle(NSLocalizedString("1 天", comment: ""), for: .normal)
             }
             else
             {
-                cell.bannerView.button.setTitle(String(format: NSLocalizedString("%@ DAYS", comment: ""), NSNumber(value: numberOfDays)), for: .normal)
+                cell.bannerView.button.setTitle(String(format: NSLocalizedString("%@ 天", comment: ""), NSNumber(value: numberOfDays)), for: .normal)
             }
                                     
             cell.bannerView.titleLabel.text = installedApp.name
@@ -393,7 +393,7 @@ private extension MyAppsViewController
             }
             catch
             {
-                print("Failed to fetch App IDs.", error)
+                print("无法获取App IDs.", error)
             }
         }
     }
@@ -435,11 +435,11 @@ private extension MyAppsViewController
                             
                             if failures.count == 1
                             {
-                                localizedText = NSLocalizedString("Failed to refresh 1 app.", comment: "")
+                                localizedText = NSLocalizedString("无法重签 1 应用.", comment: "")
                             }
                             else
                             {
-                                localizedText = String(format: NSLocalizedString("Failed to refresh %@ apps.", comment: ""), NSNumber(value: failures.count))
+                                localizedText = String(format: NSLocalizedString("无法重签 %@ 应用.", comment: ""), NSNumber(value: failures.count))
                             }
                             
                             let detailText = failures.first?.value.localizedDescription
@@ -465,11 +465,11 @@ private extension MyAppsViewController
         
         if installedApps.contains(where: { $0.bundleIdentifier == StoreApp.altstoreAppID })
         {
-            let alertController = UIAlertController(title: NSLocalizedString("Refresh AltStore?", comment: ""), message: NSLocalizedString("AltStore will quit when it is finished refreshing.", comment: ""), preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: RSTSystemLocalizedString("Cancel"), style: .cancel) { (action) in
+            let alertController = UIAlertController(title: NSLocalizedString("重签AltStore?", comment: ""), message: NSLocalizedString("当完成重签后AltStore将被退出.", comment: ""), preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: RSTSystemLocalizedString("取消"), style: .cancel) { (action) in
                 completionHandler(.failure(OperationError.cancelled))
             })
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Refresh", comment: ""), style: .default) { (action) in
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("重签", comment: ""), style: .default) { (action) in
                 refresh()
             })
             self.present(alertController, animated: true, completion: nil)
@@ -568,7 +568,7 @@ private extension MyAppsViewController
                 }
             }
             
-            print("Finished refreshing with result:", result.error?.localizedDescription ?? "success")
+            print("重签结果:", result.error?.localizedDescription ?? "成功")
         }
     }
     
@@ -614,7 +614,7 @@ private extension MyAppsViewController
                     self.collectionView.reloadItems(at: [indexPath])
                     
                 case .success:
-                    print("Updated app:", storeApp.bundleIdentifier)
+                    print("已更新应用:", storeApp.bundleIdentifier)
                     // No need to reload, since the the update cell is gone now.
                 }
                 
@@ -640,8 +640,8 @@ private extension MyAppsViewController
     
     func presentSideloadingAlert(completion: @escaping (Bool) -> Void)
     {
-        let alertController = UIAlertController(title: NSLocalizedString("Sideload Apps (Beta)", comment: ""), message: NSLocalizedString("If you encounter an app that is not able to be sideloaded, please report the app to support@altstore.io.", comment: ""), preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: RSTSystemLocalizedString("OK"), style: .default, handler: { (action) in
+        let alertController = UIAlertController(title: NSLocalizedString("Sideload Apps (Beta)", comment: ""), message: NSLocalizedString("如果遇到无法安装的应用程序，请将该应用程序报告给 support@altstore.io.", comment: ""), preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: RSTSystemLocalizedString("好"), style: .default, handler: { (action) in
             completion(true)
         }))
         alertController.addAction(UIAlertAction(title: UIAlertAction.cancel.title, style: UIAlertAction.cancel.style, handler: { (action) in
@@ -680,7 +680,7 @@ private extension MyAppsViewController
                         }
                         else
                         {
-                            print("Successfully installed app:", application.bundleIdentifier)
+                            print("成功完成安装:", application.bundleIdentifier)
                         }
                         
                         self.navigationItem.leftBarButtonItem?.isIndicatingActivity = false
@@ -707,14 +707,14 @@ private extension MyAppsViewController
                     if let localizedError = error as? OperationError, case OperationError.sideloadingAppNotSupported = localizedError
                     {
                         let message = NSLocalizedString("""
-                        Sideloading apps is in beta, and is currently limited to a small number of apps. This restriction is temporary, and you will be able to sideload any app once the feature is finished.
+                        签名应用处于测试阶段，目前仅限少数应用。 此限制是暂时的，功能完成后，您将可以签名任何应用.
 
-                        In the meantime, you can help us beta test sideloading apps by becoming a Patron.
+                        同时，您可以通过成为赞助者来帮助我们对签名应用进行Beta测试.
                         """, comment: "")
                         
                         let alertController = UIAlertController(title: localizedError.localizedDescription, message: message, preferredStyle: .alert)
                         alertController.addAction(.cancel)
-                        alertController.addAction(UIAlertAction(title: NSLocalizedString("Become a Patron", comment: ""), style: .default, handler: { (action) in
+                        alertController.addAction(UIAlertAction(title: NSLocalizedString("成为Patron", comment: ""), style: .default, handler: { (action) in
                             NotificationCenter.default.post(name: AppDelegate.openPatreonSettingsDeepLinkNotification, object: nil)
                         }))
                         
@@ -734,15 +734,15 @@ private extension MyAppsViewController
     
     @objc func presentAlert(for installedApp: InstalledApp)
     {
-        let alertController = UIAlertController(title: nil, message: NSLocalizedString("Removing a sideloaded app only removes it from AltStore. You must also delete it from the home screen to fully uninstall the app.", comment: ""), preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: NSLocalizedString("删除已签名的应用程序只会将其从AltStore中删除。 您还必须从主屏幕上将其删除，以完全卸载该应用程序.", comment: ""), preferredStyle: .actionSheet)
         alertController.addAction(.cancel)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("删除", comment: ""), style: .destructive, handler: { (action) in
             DatabaseManager.shared.persistentContainer.performBackgroundTask { (context) in
                 let installedApp = context.object(with: installedApp.objectID) as! InstalledApp
                 context.delete(installedApp)
                 
                 do { try context.save() }
-                catch { print("Failed to remove sideloaded app.", error) }
+                catch { print("删除应用失败.", error) }
             }
         }))
         
@@ -873,11 +873,11 @@ extension MyAppsViewController
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "InstalledAppsHeader", for: indexPath) as! InstalledAppsCollectionHeaderView
             
             UIView.performWithoutAnimation {
-                headerView.textLabel.text = NSLocalizedString("Installed", comment: "")
+                headerView.textLabel.text = NSLocalizedString("已安装的应用", comment: "")
                 
                 headerView.button.isIndicatingActivity = false
                 headerView.button.activityIndicatorView.color = .altPrimary
-                headerView.button.setTitle(NSLocalizedString("Refresh All", comment: ""), for: .normal)
+                headerView.button.setTitle(NSLocalizedString("重签全部", comment: ""), for: .normal)
                 headerView.button.addTarget(self, action: #selector(MyAppsViewController.refreshAllApps(_:)), for: .primaryActionTriggered)
                 headerView.button.isIndicatingActivity = self.isRefreshingAllApps
                 

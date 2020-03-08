@@ -365,11 +365,11 @@ private extension AppViewController
             
             if self.app.installedApp == nil
             {
-                button.setTitle(NSLocalizedString("FREE", comment: ""), for: .normal)
+                button.setTitle(NSLocalizedString("免费", comment: ""), for: .normal)
             }
             else
             {
-                button.setTitle(NSLocalizedString("OPEN", comment: ""), for: .normal)
+                button.setTitle(NSLocalizedString("打开", comment: ""), for: .normal)
             }
             
             let progress = AppManager.shared.installationProgress(for: self.app)

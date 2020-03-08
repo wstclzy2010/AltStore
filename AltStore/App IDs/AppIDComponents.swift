@@ -19,7 +19,7 @@ class AppIDCollectionViewCell: UICollectionViewCell
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.contentView.preservesSuperviewLayoutMargins = true
         
-        self.bannerView.buttonLabel.text = NSLocalizedString("Expires in", comment: "")
+        self.bannerView.buttonLabel.text = NSLocalizedString("证书到期剩", comment: "")
         self.bannerView.buttonLabel.isHidden = false
     }
 }

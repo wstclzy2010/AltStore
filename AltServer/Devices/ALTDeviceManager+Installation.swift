@@ -11,9 +11,11 @@ import UserNotifications
 import ObjectiveC
 
 #if STAGING
-private let appURL = URL(string: "https://f000.backblazeb2.com/file/altstore-staging/altstore.ipa")!
+private let appURL = URL(string:
+    "https://www.lanzous.com/i9cyjba")!
 #else
-private let appURL = URL(string: "https://f000.backblazeb2.com/file/altstore/altstore.ipa")!
+private let appURL = URL(string:
+    "https://www.lanzous.com/i9cyjba")!
 #endif
 
 enum InstallError: LocalizedError

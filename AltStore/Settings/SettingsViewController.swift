@@ -140,11 +140,11 @@ private extension SettingsViewController
         case .signIn:
             if isHeader
             {
-                settingsHeaderFooterView.primaryLabel.text = NSLocalizedString("ACCOUNT", comment: "")
+                settingsHeaderFooterView.primaryLabel.text = NSLocalizedString("账号", comment: "")
             }
             else
             {
-                settingsHeaderFooterView.secondaryLabel.text = NSLocalizedString("Sign in with your Apple ID to download apps from AltStore.", comment: "")
+                settingsHeaderFooterView.secondaryLabel.text = NSLocalizedString("用你的Apple ID登录以从AltStore下载应用.", comment: "")
             }
             
         case .patreon:
@@ -154,27 +154,27 @@ private extension SettingsViewController
             }
             else
             {
-                settingsHeaderFooterView.secondaryLabel.text = NSLocalizedString("Receive access to beta versions of AltStore, Delta, and more by becoming a patron.", comment: "")
+                settingsHeaderFooterView.secondaryLabel.text = NSLocalizedString("成为赞助者，即可访问AltStore，Delta等Beta版.", comment: "")
             }
             
         case .account:
-            settingsHeaderFooterView.primaryLabel.text = NSLocalizedString("ACCOUNT", comment: "")
+            settingsHeaderFooterView.primaryLabel.text = NSLocalizedString("账号", comment: "")
             
-            settingsHeaderFooterView.button.setTitle(NSLocalizedString("SIGN OUT", comment: ""), for: .normal)
+            settingsHeaderFooterView.button.setTitle(NSLocalizedString("注销", comment: ""), for: .normal)
             settingsHeaderFooterView.button.addTarget(self, action: #selector(SettingsViewController.signOut(_:)), for: .primaryActionTriggered)
             settingsHeaderFooterView.button.isHidden = false
             
         case .backgroundRefresh:
-            settingsHeaderFooterView.secondaryLabel.text = NSLocalizedString("Automatically refresh apps in the background when connected to the same WiFi as AltServer.", comment: "")
+            settingsHeaderFooterView.secondaryLabel.text = NSLocalizedString(" 当连接到和AltServer相同的WiFi时自动重签名应用.", comment: "")
             
         case .instructions:
             break
             
         case .credits:
-            settingsHeaderFooterView.primaryLabel.text = NSLocalizedString("CREDITS", comment: "")
+            settingsHeaderFooterView.primaryLabel.text = NSLocalizedString("鸣谢", comment: "")
             
         case .debug:
-            settingsHeaderFooterView.primaryLabel.text = NSLocalizedString("DEBUG", comment: "")
+            settingsHeaderFooterView.primaryLabel.text = NSLocalizedString("调试", comment: "")
         }
     }
     
@@ -232,8 +232,8 @@ private extension SettingsViewController
             }
         }
         
-        let alertController = UIAlertController(title: NSLocalizedString("Are you sure you want to sign out?", comment: ""), message: NSLocalizedString("You will no longer be able to install or refresh apps once you sign out.", comment: ""), preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Sign Out", comment: ""), style: .destructive) { _ in signOut() })
+        let alertController = UIAlertController(title: NSLocalizedString("你确定要退出账号?", comment: ""), message: NSLocalizedString("当退出账号后你将无法安装或者重签应用.", comment: ""), preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("退出账号", comment: ""), style: .destructive) { _ in signOut() })
         alertController.addAction(.cancel)
         self.present(alertController, animated: true, completion: nil)
     }

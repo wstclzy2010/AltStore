@@ -96,7 +96,7 @@ private extension BrowseViewController
             
             if app.installedApp == nil
             {
-                cell.bannerView.button.setTitle(NSLocalizedString("FREE", comment: ""), for: .normal)
+                cell.bannerView.button.setTitle(NSLocalizedString("免费", comment: ""), for: .normal)
                 
                 let progress = AppManager.shared.installationProgress(for: app)
                 cell.bannerView.button.progress = progress
@@ -112,7 +112,7 @@ private extension BrowseViewController
             }
             else
             {
-                cell.bannerView.button.setTitle(NSLocalizedString("OPEN", comment: ""), for: .normal)
+                cell.bannerView.button.setTitle(NSLocalizedString("打开", comment: ""), for: .normal)
                 cell.bannerView.button.progress = nil
                 cell.bannerView.button.countdownDate = nil
             }
