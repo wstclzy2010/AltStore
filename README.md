@@ -1,4 +1,5 @@
 # AltStore
+汉化版
 
 > AltStore is an alternative app store for non-jailbroken iOS devices. 
 
